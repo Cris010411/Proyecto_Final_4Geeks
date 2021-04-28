@@ -23,19 +23,24 @@ api = Blueprint('api', __name__)
 
 @api.route("/forgot_pass", methods=["POST"])
 def forgot_pass():
+    #paso1 recibir email y respuesta secreta
+    #paso2 corroborar si la respuesta secreta es correcta y el mail (CONSULTAR A BASE DE DATOS)
+    #paso3 si mail y respuesta calzan enviar mail con
     email=request.json.get("email", None)
-    password=request.json.get("password", None)
+    secret=request.json.get("secret", None)
+    message = Mail(
+        from_email='finanestu19@gmail.com',
+        to_emails=email,
+        subject='Recuperacion de contraseña',
+        html_content='<strong>Su contraseña actual es </strong>')
+    try:
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+        return jsonify({"mensaje":"ok"})
+    except Exception as e:
+        return jsonify({"error":e})
 
-message = Mail(
-    from_email='finanestu19@gmail.com',
-    to_emails=email,
-    subject='Recuperacion de contraseña',
-    html_content='<strong>Su contraseña actual es {password} </strong>')
-try:
-    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-    response = sg.send(message)
-    print(response.status_code)
-    print(response.body)
-    print(response.headers)
-except Exception as e:
-    print(e.message)
+    
