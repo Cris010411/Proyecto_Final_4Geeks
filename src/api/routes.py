@@ -24,4 +24,4 @@ def create_User():
     db.session.add(user)
     db.session.commit()
 
-    return jsonify(response_body), 200
+    return jsonify({"user"}) 
