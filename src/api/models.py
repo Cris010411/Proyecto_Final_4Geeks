@@ -5,13 +5,12 @@ db = SQLAlchemy()
 class User(db.Model):
     __tablename__= 'user'
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    name = db.Column(db.String(180), unique=False, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    age = db.Column(db.Integer, unique=False, nullable=False)
+    birthday = db.Column(db.String(120), unique=False, nullable=False)
     gender = db.Column(db.String(120), unique=False, nullable=False)
-    country = db.Column(db.String(120), unique=False, nullable=False)
-    mascot = db.Column(db.String(120), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -21,4 +20,4 @@ class User(db.Model):
             "id": self.id,
             "email": self.email,
             # do not serialize the password, its a security breach
-        }
+        }	
