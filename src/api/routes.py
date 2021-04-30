@@ -2,11 +2,12 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
+import sendgrid
+from sendgrid.helpers.mail import *
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
+from flask_mail import Message
 
 api = Blueprint('api', __name__)
 
@@ -23,24 +24,16 @@ api = Blueprint('api', __name__)
 
 @api.route("/forgot_pass", methods=["POST"])
 def forgot_pass():
+    from app import mail
     #paso1 recibir email y respuesta secreta
     #paso2 corroborar si la respuesta secreta es correcta y el mail (CONSULTAR A BASE DE DATOS)
     #paso3 si mail y respuesta calzan enviar mail con
     email=request.json.get("email", None)
     secret=request.json.get("secret", None)
-    message = Mail(
-        from_email='finanestu19@gmail.com',
-        to_emails=email,
-        subject='Recuperacion de contraseña',
-        html_content='<strong>Su contraseña actual es </strong>')
-    try:
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-        response = sg.send(message)
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
-        return jsonify({"mensaje":"ok"})
-    except Exception as e:
-        return jsonify({"error":e})
 
+    msg= Message('Recuperacion de contraseña', recipients=[email])
+    msg.html = ('<strong>Su contraseña actual es </strong>')
+    mail.send(msg)
+    return jsonify({"message": "OK"}), 200
+   
     
