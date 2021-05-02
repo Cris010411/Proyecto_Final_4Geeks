@@ -29,11 +29,12 @@ def forgot_pass():
     #paso2 corroborar si la respuesta secreta es correcta y el mail (CONSULTAR A BASE DE DATOS)
     #paso3 si mail y respuesta calzan enviar mail con
     email=request.json.get("email", None)
-    secret=request.json.get("secret", None)
-
+    email_registrado = User.query.filter_by(email=email).first()
+    if email_registrado is None:
+        return jsonify({"message": "Email no registrado"}), 400
     msg= Message('Recuperacion de contraseña', recipients=[email])
-    msg.html = ('<strong>Su contraseña actual es </strong>')
+    msg.html = ('<strong>Su contraseña actual es </strong>'+ email_registrado.password)
     mail.send(msg)
-    return jsonify({"message": "OK"}), 200
+    return jsonify({"message": "Su contraseña fue enviada a su correo"}), 200
    
     
