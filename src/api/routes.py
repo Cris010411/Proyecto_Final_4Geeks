@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Calificaciones
 from api.utils import generate_sitemap, APIException
 
 
@@ -31,15 +31,15 @@ def create_Calificacion():
     id_name=request.json.get("id_name",None)
     calificacion=request.json.get("calificacion",None)
 
-    calificacion=Calificaciones(id=id,id_name=id_name, calificacion=calificacion)
+    calific=Calificaciones(id=id, id_user= id_name, calificacion=calificacion)
 
-    db.session.add(calificacion)
+    db.session.add(calific)
     db.session.commit()
 
-    return jsonify({"calificacion":"ok"}),200
+    return jsonify({"calific":"ok"}),200
    
 
-@api.route('/consultaCalificacion', methods=['POST'])
+@api.route('/consultaCalificacion', methods=['GET'])
 def consulta_Calificacion():
     user_id=request.json.get("id",None)
    
