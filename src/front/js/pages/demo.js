@@ -9,9 +9,9 @@ import test from "../../img/test.jpg";
 
 export const Demo = () => {
 	const { store, actions } = useContext(Context);
-	useEffect(() => {
-		actions.changeNav("1");
-	});
+	//useEffect(() => {
+	//	actions.changeNav("1");
+	//});
 	const redireccionTest = lugar => {
 		if (lugar == "a") {
 			return (window.location.href = "./pagina");

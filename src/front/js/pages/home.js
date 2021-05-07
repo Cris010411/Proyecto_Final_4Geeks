@@ -10,9 +10,9 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	useEffect(() => {
-		actions.changeNav("2");
-	});
+	//useEffect(() => {
+	//	actions.changeNav("2");
+	//});
 
 	function validateForm() {
 		return email.length > 0 && password.length > 0;
@@ -22,7 +22,7 @@ export const Home = () => {
 	}
 
 	function ingreso() {
-		return (window.location.href = "./demo");
+		return (window.location.href = "./viewresultuser");
 	}
 	return (
 		<div className="container">
@@ -53,7 +53,7 @@ export const Home = () => {
 									onChange={e => setPassword(e.target.value)}
 								/>
 							</Form.Group>
-							<Link to="/demo">
+							<Link to="/viewresultuser">
 								<Button
 									block
 									size="lg"

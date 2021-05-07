@@ -5,6 +5,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { RegisterUser } from "./pages/registerUser";
+import { Viewresultuser } from "./pages/viewresultuser";
 import { Single } from "./pages/single";
 import { Recuperacion } from "./pages/recuperacion";
 import injectContext from "./store/appContext";
@@ -35,6 +36,9 @@ const Layout = () => {
 						</Route>
 						<Route exact path="/registerUser">
 							<RegisterUser />
+						</Route>
+						<Route exact path="/viewresultuser">
+							<Viewresultuser />
 						</Route>
 						<Route exact path="/single/:theid">
 							<Single />
