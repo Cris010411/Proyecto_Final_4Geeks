@@ -27,8 +27,10 @@ class Calificaciones(db.Model):
     __tablename__= 'calificaciones'
     id = db.Column(db.Integer, primary_key=True)
     id_user = db.Column(db.Integer, db.ForeignKey('user.id'))
+    id_test = db.Column(db.Integer, db.ForeignKey('test.id'))
     calificacion = db.Column(db.Integer, unique=False, nullable=False)
-    calificaciones = db.relationship('User', backref='user', lazy=True)   
+    calificaciones = db.relationship('User', backref='user', lazy=True) 
+    calificaciones = db.relationship('Test', backref='test', lazy=True)   
          
     #calificaciones_test = db.relationship('Calificaciones', backref='test', lazy=True)
 
@@ -40,6 +42,7 @@ class Calificaciones(db.Model):
         return {
             "id": self.id,
             "id_user": self.id_user,
+            "id_test": self.id_test,
             "calificacion": self.calificacion
             # do not serialize the password, its a security breach
         }
