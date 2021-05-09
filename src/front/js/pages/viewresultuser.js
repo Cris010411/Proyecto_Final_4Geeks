@@ -38,26 +38,25 @@ export const Viewresultuser = () => {
 					<br />
 					<div>
 						<BootstrapTable
-							className="table-info table-bordered"
+							className="table-info table-bordered rounded-lg"
 							data={data}
 							striped
 							bordered
 							hover
 							style={{ border: 5 }}>
-							<TableHeaderColumn isKey dataField="id">
+							<TableHeaderColumn className="rounded-pill" isKey dataField="id">
 								item
 							</TableHeaderColumn>
-							<TableHeaderColumn dataField="name">Tipo de test</TableHeaderColumn>
-							<TableHeaderColumn dataField="value">Preguntas malas</TableHeaderColumn>
+							<TableHeaderColumn className="text-center rounded-pill" dataField="name">
+								Tipo de test
+							</TableHeaderColumn>
+							<TableHeaderColumn className="text-center rounded-pill" dataField="value">
+								Preguntas malas
+							</TableHeaderColumn>
 						</BootstrapTable>
 					</div>
 					<div>
-						<ReactBootStrap.Table
-							className="table-info table-bordered"
-							striped
-							bordered
-							hover
-							style={{ border: 5 }}>
+						<ReactBootStrap.Table className="table-info table-bordered rounded-lg" id="reacttable">
 							<thead>
 								<tr>
 									<th>Nota final</th>
@@ -69,7 +68,8 @@ export const Viewresultuser = () => {
 					<div className="text-center">
 						<h4>{store.message || "Haz completado con éxito el test   "}</h4>
 					</div>
-					<div>
+					<br />
+					<div className="text-center">
 						<Link to="/">
 							<Button className="btn btn-danger btn-lg" id="salirquest" style={{ marginTop: 4 }}>
 								Regresar
