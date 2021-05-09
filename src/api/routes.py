@@ -25,7 +25,7 @@ def create_User():
 
     return jsonify({"user":"ok"}) 
 
-@api.route('/createCalificacion', methods=['POST'])
+@api.route("/createCalificacion", methods=['POST'])
 def create_Calificacion():
     id=request.json.get("id",None)
     id_name=request.json.get("id_name",None)
@@ -41,15 +41,10 @@ def create_Calificacion():
 
 @api.route('/consultaCalificacion', methods=['GET'])
 def consulta_Calificacion():
-    user_id=request.json.get("id",None)
-   
-    #calificacion = Calificaciones.query.get(id)
-
-    calificaciones = Calificaciones.query.filter_by(id_name=user_id)
-
-    serialized = list(map(lambda x: x.serialize()))
-
-    return jsonify({"consultaCalificacion": serialized }),200
+    id=request.json.get("id",None)
+    consulta= Calificaciones.query.get(id)
+    
+    return jsonify({"msg":consulta.serialize()}),200
 	
 	
 	

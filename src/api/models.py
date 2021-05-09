@@ -37,10 +37,10 @@ class Calificaciones(db.Model):
     #return '<Calificaciones %r>' % self.username
     
     
-def serialize(self):
-    return {
-        "id": self.id,
-        "id_user": self.id_user,
-        "calificacion": self.calificacion
-        # do not serialize the password, its a security breach
-    }
+    def serialize(self):
+        return {
+            "id": self.id,
+            "id_user": self.id_user,
+            "calificacion": self.calificacion
+            # do not serialize the password, its a security breach
+        }
