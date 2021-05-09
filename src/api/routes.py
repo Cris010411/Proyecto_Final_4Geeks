@@ -3,11 +3,12 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 #import sendgrid
-from sendgrid.helpers.mail import *
+#from sendgrid.helpers.mail import *
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Calificaciones, Test, Question
 from api.utils import generate_sitemap, APIException
 from flask_mail import Message
+from flask_jwt_extended import create_access_token, JWTManager, jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
 #USUARIO
@@ -30,11 +31,11 @@ def create_User():
     if email is None:
         return jsonify ({"message": "missing information to complete"}),400
     else:
-    user=User(id=id, name=name, password=password, birthday=birthday, gender=gender, email=email)
-    db.session.add(user)
-    db.session.commit()
+        user=User(id=id, name=name, password=password, birthday=birthday, gender=gender, email=email)
+        db.session.add(user)
+        db.session.commit()
 
-    return jsonify({"user":"ok"}),200 
+        return jsonify({"user":"ok"}),200 
 #CALIFICACION
 @api.route("/createCalificacion", methods=['POST'])
 def create_Calificacion():
@@ -42,15 +43,14 @@ def create_Calificacion():
     id_name=request.json.get("id_name",None)
     id_test=request.json.get("id_test",None)
     calificacion=request.json.get("calificacion",None)
-     if calificacion is None:
+    if calificacion is None:
         return jsonify ({"message": "missing information to complete"}),400
     else:
-    calific=Calificaciones(id=id, id_user= id_name, calificacion=calificacion)
+        calific=Calificaciones(id=id, id_user= id_name, calificacion=calificacion)
+        db.session.add(calific)
+        db.session.commit()
 
-    db.session.add(calific)
-    db.session.commit()
-
-    return jsonify({"calific":"ok"}),200
+        return jsonify({"calific":"ok"}),200
    
 
 @api.route('/consultaCalificacion', methods=['GET'])
@@ -104,11 +104,11 @@ def Question_agregar():
     if option is None:
         return jsonify ({"message": "missing information to complete"}),400
     else:
-    question=Question(frase=frase, option=option, test_log=test_log)
-    db.session.add(question)
-    db.session.commit()
-    #user=json.loads(name, color_ojos, color_cabello,gender)
-    return jsonify({"results":"ok"}),200
+        question=Question(frase=frase, option=option, test_log=test_log)
+        db.session.add(question)
+        db.session.commit()
+    
+        return jsonify({"results":"ok"}),200
 
 @api.route("/test", methods=["POST"])
 def Test_agregar():
@@ -119,11 +119,11 @@ def Test_agregar():
     if type_test is None:
         return jsonify ({"message": "missing information to complete"}),400
     else:
-    test=Test(tema=tema, type_test=type_test)
-    db.session.add(test)
-    db.session.commit()
+        test=Test(tema=tema, type_test=type_test)
+        db.session.add(test)
+        db.session.commit()
     #user=json.loads(name, color_ojos, color_cabello,gender)
-    return jsonify({"test":"ok"}),200
+        return jsonify({"test":"ok"}),200
 
 #RECUPERAR CONTRASEÑA
 @api.route("/forgot_pass", methods=["POST"])
