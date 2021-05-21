@@ -98,7 +98,7 @@ def forgot_pass():
     if not email:
         return jsonify({"message": "Email no registrado"}), 400
 
-    # email_registrado = User.query.filter_by(email=email).first()
+    email_registrado = User.query.filter_by(email=email).first()
     # if not email_registrado:
     #     return jsonify ({"msg":"Si el correo es válido se ha enviado la información de recuperación"}), 400
 
@@ -107,7 +107,7 @@ def forgot_pass():
     from_email = Email("cris-nando01@hotmail.com")
     to_email = To(email)
     subject = "Sending with SendGrid is Fun"
-    content = Content("text/plain", "and easy to do anywhere, even with Python")
+    content = Content("text/plain", "Su contraseña es:" + email_registrado.password)
     mail = Mail(from_email, to_email, subject, content)
     try:
         response = sg.client.mail.send.post(request_body=mail.get())
