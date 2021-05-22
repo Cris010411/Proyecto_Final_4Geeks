@@ -10,7 +10,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			botPregunta: "block",
 			aleatorioPregunta: "",
 			respuestaRegistro: "",
-			cuestionario: []
+			cuestionario: [],
+			opcionesAleatorias: [],
+			respuestaCorreo: "",
+			eleccion: "",
+			resultado: 0
 		},
 		actions: {
 			//traer info de usuario
@@ -25,9 +29,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 
 				fetch(process.env.BACKEND_URL + "/api/usuario", requestOptions)
-					.then(response => response.json())
+					.then(response => {
+						if (response.status >= 200 && response.status < 300) {
+							return response.json();
+						} else {
+							window.location.href = "./";
+							alert("Expiró la sesión");
+						}
+					})
 					.then(result => setStore({ currentUser: result }))
-					.catch(error => console.log("error", error)); // alert(result))
+					.catch(error => error);
 			},
 			//traer todas las preguntas de la bd
 			traepreguntas: () => {
@@ -41,7 +52,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.status >= 200 && response.status < 300) return response.json();
 					})
 					.then(result => setStore({ cuestionario: result }))
-					.catch(error => console.log("error", error));
+					.catch(error => error);
 			},
 			//login
 			getUser: (email, password) => {
@@ -65,14 +76,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if (response.status >= 200 && response.status < 300) {
 							return response.json();
 						} else {
-							alert("error " + response.status + " usuario o contraseña invalido");
+							alert(" usuario o contraseña invalido");
 						}
 					})
 					.then(result => {
 						sessionStorage.setItem("token", result.token);
 						setStore({ permitir: true });
 					})
-					.catch(error => console.log("error", error));
+					.catch(error => error);
 			},
 			//registrar el usuario
 			postUser: (nombre, contraseña, fecha, sexo, correo) => {
@@ -86,11 +97,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						birthday: fecha,
 						gender: sexo,
 						email: correo,
-						cant_question: "0",
-						nota_alta: "0"
+						cant_question: 0,
+						nota_alta: 0
 					}
 				]);
-				// console.log(raw);
+
 				var requestOptions = {
 					method: "POST",
 					headers: myHeaders,
@@ -101,14 +112,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "/api/usuario", requestOptions)
 					.then(response => {
 						if (response.status >= 200 && response.status < 300) {
-							setStore({ respuestaRegistro: "Registro exitoso" });
+							setStore({ respuestaRegistro: 1 });
 							return response.json();
 						} else {
-							alert("error " + response.status);
+							setStore({ respuestaRegistro: 2 });
 						}
 					})
-					.then(result => console.log(result))
-					.catch(error => console.log("error", error));
+					.then(result => result)
+					.catch(error => error);
 			},
 			//recuperar contraseña
 			postForgot: email => {
@@ -129,13 +140,65 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "/api/forgot_pass", requestOptions)
 					.then(response => {
 						if (response.status >= 200 && response.status < 300) {
+							setStore({ respuestaCorreo: 1 });
 							return response.json();
 						} else {
 							alert("error" + response.status);
 						}
 					})
-					.then(result => console.log(result))
-					.catch(error => console.log("error", error));
+					.then(result => result)
+					.catch(error => error);
+			},
+			//actualizacion de los registros del usuario
+			updateUser: (dato1, dato2) => {
+				var myHeaders = new Headers();
+				myHeaders.append("Authorization", "Bearer " + sessionStorage.getItem("token"));
+				myHeaders.append("Content-Type", "application/json");
+
+				var raw = JSON.stringify({
+					cant_question: dato1,
+					nota_alta: dato2
+				});
+
+				var requestOptions = {
+					method: "PUT",
+					headers: myHeaders,
+					body: raw,
+					redirect: "follow"
+				};
+
+				fetch(process.env.BACKEND_URL + "/api/usuario", requestOptions)
+					.then(response => {
+						if (response.status >= 200 && response.status < 300) {
+							return response.json();
+						} else {
+							alert("error" + response.status);
+						}
+					})
+					.then(result => result)
+					.catch(error => error);
+			},
+			//eliminar usuario
+			delUsuario: () => {
+				var myHeaders = new Headers();
+				myHeaders.append("Authorization", "Bearer " + sessionStorage.getItem("token"));
+
+				var requestOptions = {
+					method: "DELETE",
+					headers: myHeaders,
+					redirect: "follow"
+				};
+
+				fetch(process.env.BACKEND_URL + "/api/usuario", requestOptions)
+					.then(response => {
+						if (response.status >= 200 && response.status < 300) {
+							return response.json();
+						} else {
+							alert("error" + response.status);
+						}
+					})
+					.then(result => alert("Se eliminó tu cuenta"), 2000)
+					.catch(error => error);
 			},
 			//cambio de la funcionalidad en el boton del nav
 			changeNav: index => {
@@ -158,13 +221,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ botPregunta: index });
 			},
 			//selector aleatorio de pregunta a mostrar
-			setAleatorioPregunta: () => {
-				let cantidad = Math.floor(Math.random() * (23 - 1)) + 1;
+			setAleatorioPregunta: index => {
+				let cantidad = Math.floor(Math.random() * index);
 				setStore({ aleatorioPregunta: cantidad });
 			},
 			//deviolver el estado de inicio de sesion a cerrado
 			setpermitir: index => {
 				setStore({ permitir: index });
+			},
+			//carbiar el orden de las opciones de respuesta en el test
+			setopcionesAleatorias: grupoOpciones => {
+				let opciones2 = grupoOpciones;
+				let carga = [];
+				let select = 0;
+				for (let i = 0; i < 4; i++) {
+					select = Math.floor(Math.random() * opciones2.length);
+					carga.push(opciones2[select]);
+					opciones2.splice(select, 1);
+				}
+				setStore({ opcionesAleatorias: carga });
+			},
+			//Guarda la eleccion de respuesta del usuario en el test
+			setEleccion: dato => {
+				setStore({ eleccion: dato });
+			},
+			//guarda la cantidad de respuestas correctas
+			setResultado: dato => {
+				setStore({ resultado: dato });
+			},
+			//limpiar variables de la sesion
+			reset: dato => {
+				sessionStorage.setItem("token", "null");
+				setStore({ currentUser: {} });
+				setStore({ permitir: false });
 			}
 		}
 	};

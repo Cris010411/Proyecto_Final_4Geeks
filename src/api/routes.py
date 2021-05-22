@@ -85,6 +85,36 @@ def infoPregunta():
     request = list(map(lambda preg:preg.serialize(),preg)) 
     return jsonify(request), 200
 
+#update nota 
+@api.route('/usuario', methods=['PUT'])
+@jwt_required()
+def change_user_data():
+# buscamos el registro  a actualizar
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+# obtenemos los datos parametros de entrada
+    upd_cant_question = request.json["cant_question"]
+    upd_nota_alta = request.json["nota_alta"]
+    if not (upd_cant_question):
+        return jsonify({"error": "Invalid"}), 400
+# actualizamos  los nuevos datos
+    user.cant_question = upd_cant_question
+    user.nota_alta = upd_nota_alta
+    db.session.commit()
+    return jsonify({"msg": "Informacion actualizada"}), 200
+
+# Eliminar usuario
+
+@api.route('/usuario', methods=["DELETE"])
+@jwt_required()
+def delete_usuario():
+    current_user_id = get_jwt_identity()
+    user = User.query.filter_by(id=current_user_id).first()
+    if user is None:
+        raise APIException("usuario no existe!",status_code=404)
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify({"Usuario eliminado":"ok"}),200
 
 #RECUPERAR CONTRASEÑA
 @api.route("/forgot_pass", methods=["POST"])
@@ -106,13 +136,13 @@ def forgot_pass():
     sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
     from_email = Email("Fitmind@mail.com")
     to_email = To(email)
-    subject = "Sending with SendGrid is Fun"
-    content = Content("text/plain", "Su contraseña es:" + email_registrado.password)
+
+    subject = "Recuperacion de contraseña"
+    content = Content("text/plain", "Su contraseña es: " + email_registrado.password)
+
     mail = Mail(from_email, to_email, subject, content)
     try:
         response = sg.client.mail.send.post(request_body=mail.get())
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
+        return jsonify({"msg": "Password enviado"}), 200
     except:
         return jsonify({"msg": "failed"}), 400

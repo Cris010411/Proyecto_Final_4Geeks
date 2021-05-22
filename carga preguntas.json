@@ -1,0 +1,146 @@
+[
+    {
+        "test_log":"Como Felipe es tan alto, al menos cuando va al cine sabe de antemano que va a sentirse incómodo en la butaca. Pero ayer también se quejó de que se sentía incómodo en el asiento que le tocó, y dijo que no se lo esperaba. Podemos concluir con certeza, que:",
+        "frase":" Tu mejor profesor es tu mayor error.",
+        "option_correcta":" Ninguna de las opciones",
+        "option_mal1":" Ayer Felipe fue al cine",
+        "option_mal2":" Felipe se siente incómodo en cualquier asiento",
+        "option_mal3":" Todas las personas altas se sienten incomodas en el cine"
+    },
+    {
+        "test_log": "Hoy he ganado $250, incluyendo el pago de horas extras. Si mi sueldo es $200 más de lo que recibo por las horas extras, ¿Cuánto he ganado en horas extras?",
+        "frase":" Siempre parece imposible hasta que se hace (Nelson Mandela)",
+        "option_correcta":"$25",
+        "option_mal1":"$50",
+        "option_mal2":"$75",
+        "option_mal3":"$200"
+    },
+    {
+        "test_log":"El alma nace ______ y se vuelve joven, esta es la comedia de la vida. El cuerpo nace  _____ y se vuelve viejo. Esta es la ____ del alma",
+        "frase":" Estudia el pasado si quieres intuir el futuro (Confucio)",
+        "option_correcta": "vieja; joven; tragedia.",
+        "option_mal1":"buena; malo; historia.",
+        "option_mal2": "limpia; joven; comedia.",
+        "option_mal3":" sola; enfermo; soledad."
+    },
+    {
+        "test_log":"En una caja hay la misma cantidad de bolas negras y blancas.  ¿Cuántas bolas hay que sacar, como mínimo, sin ver el interior de la caja, para tener 2 del mismo color?",
+        "frase":" Si no te gusta cómo son las cosas, cámbialas (Jim Rohn)",
+        "option_correcta":"3",
+        "option_mal1":"36",
+        "option_mal2":"12",
+        "option_mal3":"24"
+    },
+    {
+        "test_log":"Si no paso el examen no podré entrar en la universidad. Y si no estudio no pasaré el examen. Entonces:",
+       "frase":" No dejes que lo que no puedes hacer interfiera con lo que puedes hacer (John R. Wooden)",
+        "option_correcta": "Si no estudio no entraré en la universidad.",
+        "option_mal1":"Nadie puede entrar en la universidad sin estudiar.",
+        "option_mal2":"En la universidad solo hay alumnos estudiosos.",
+        "option_mal3":"Siempre que estudio me va bien en los exámenes."
+    },
+    {
+        "test_log":"En una caja hay 5 bolas negras y 3 blancas. Para que la probabilidad de sacar una bola blanca sea tres quintos, en la caja habría que",
+        "frase":" La buena fortuna favorece a los atrevidos (Virgilio)",
+        "option_correcta": "quitar una negra y agregar tres blancas.",
+        "option_mal1":" agregar 3 bolas blancas.",
+        "option_mal2":"agregar 1 de cada color.",
+        "option_mal3":"quitar 1 bola negra."
+    },
+    {
+        "test_log":"La mayor parte de los asesinatos son cometidos por hombres solteros. Por supuesto, también hombres casados cometen homicidios, aunque en menor proporción. Estadísticamente, las mujeres cometen mucho menos crímenes que los hombres.El texto anterior:",
+        "frase":" Siempre se puede ser mejor (Tiger Woods)",
+        "option_correcta": "No incluye ninguna conclusión.",
+        "option_mal1":"Es evidentemente falso.",
+        "option_mal2":"Contiene premisas y conclusiones.",
+        "option_mal3":"Exagera las diferencias entre hombres y mujeres."
+    },
+    {
+        "test_log":"Si B es más joven que A;  B es más viejo que C;  D es más viejo que A, entonces  ¿Cuál de las afirmaciones es cierta?",
+        "frase":" He fallado una y otra vez a lo largo de mi vida. Es por eso por lo que he tenido éxito (Michael Jordan)",
+        "option_correcta":"C es más joven que D",
+        "option_mal1":"D es más joven que B",
+        "option_mal2":"A es más joven que C",
+        "option_mal3":"B es más viejo que D"
+    },
+    {
+        "test_log":"La terapia hormonal con estrógenos para tratar los efectos de la menopausia, no es tan eficaz como se pensaba. Un estudio realizado por investigadores de la universidad de Stanford, y publicado esta semana por la revista médica JAMA, contradice la extendida creencia de que la terapia hormonal mejora la calidad de vida de las mujeres, en general, en el periodo posterior a la menopausia.Un implícito del texto es:",
+        "frase":" Sin estudiar enferma el alma (Séneca)",
+        "option_correcta": "Hay un antes y un después del estudio.",
+        "option_mal1":" La menopausia es un mal que aqueja a todas las mujeres.",
+        "option_mal2":"La terapia con estrógenos se descubrió en la ciudad de Stanford.",
+        "option_mal3":"Es necesario investigar sobre la menopausia."
+    },
+    {
+        "test_log":"Todos los estudiantes universitarios son educados, María es educada, por lo tanto:",
+        "frase":" El hombre que es un maestro de la paciencia es un maestro de todo lo demás (George Saville)",
+        "option_correcta": "Ninguna de las opciones.",
+        "option_mal1":"María es estudiante universitaria.",
+        "option_mal2":"Para ser una persona educada hay que ir a la universidad.",
+        "option_mal3":"Todas las personas educadas fueron a la universidad."
+    },
+    {
+        "test_log":"El número de 4 dígitos 5ab7, es divisible por 3, cuando el máximo valor numérico de a+b sea igual a",
+        "frase":" Cuanto más trabajo, más suerte parezco tener (Thomas Jefferson)",
+        "option_correcta":"18",
+        "option_mal1":"15",
+        "option_mal2":"21",
+        "option_mal3":"24"
+    },
+    {
+        "test_log":"A es más alto que B. B es más bajo que C. Entonces:",
+        "frase":" Cambia tus pensamientos y cambiarás tu mundo (Norman Vincent Peale)",
+        "option_correcta":"Ninguna de las opciones.",
+        "option_mal1":"A y C tienen la misma estatura.",
+        "option_mal2":"A es más alto que C.",
+        "option_mal3":"C es más alto que A"
+    },
+    {
+        "test_log":"Pedro presume que todavía es joven. Si se divide su edad por 2,3,4,5 ó 6, el resto es 1. ¿Cuál es la edad de Pedro?",
+        "frase":" Tus talentos y habilidades irán mejorando con el tiempo, pero para eso has de empezar (Martin Luther King)",
+        "option_correcta":"61 años.",
+        "option_mal1":"41 años.",
+        "option_mal2":"51 años.",
+        "option_mal3":"71 años."
+    },
+    {
+        "test_log":"Tengo un libro de física en la mano. En su biblioteca, Juan no tiene libros de física. Entonces:",
+        "frase":" Nuestra paciencia conseguirá más cosas que nuestra fuerza (Edmund Burke)",
+        "option_correcta": "El libro que tengo en la mano no lo tomé de la biblioteca de Juan.",
+        "option_mal1":"Juan compra muchos libros.",
+        "option_mal2":"Siempre le pido libros prestados a Juan.",
+        "option_mal3":" Ninguna de las opciones."
+    },
+    {
+        "test_log":"Un importante sector de la clase política parece empañado en innovar para que todo siga igual. Así se explica la originalísima propuesta de crear un ministerio anticorrupción, mientras se le da largas a la necesidad de modernizar la legislación de prensa. El tono del texto es claramente:",
+        "frase":" Los libros son peligrosos. Los mejores deberían ser etiquetados con un Esto podría cambiar tu vida (Helen Exley)",
+        "option_correcta": "Irónico.",
+        "option_mal1":"Optimista.",
+        "option_mal2":"Anarquista.",
+        "option_mal3":"Periodístico."
+    },
+    {
+        "test_log": "Utilizando los elementos del conjunto {4, 5, 6, 7, 8, 9,} determine cuántos números de pares de 3 dígitos distintos, pueden formarse con estos elementos. ",
+        "frase":"Tu educación más importante no está ocurriendo en una clase (Jim Rohn)",
+        "option_correcta":"60",
+        "option_mal1":"120",
+        "option_mal2":"180",
+        "option_mal3":"200"
+    },
+    {
+        "test_log":"De un grupo de 5 estudiantes de arquitectura se formará una comisión de 3 para estudiar unas casas con más de 100 años de antigüedad, ¿Cuántas comisiones diferentes pueden formarse?",
+        "frase":"La juventud es el momento de estudiar la sabiduría; la vejez, el de practicarla (Jean Jacques Rousseau)",
+        "option_correcta":"10",
+        "option_mal1":"60",
+        "option_mal2":"20",
+        "option_mal3":"30"
+    },
+    {
+        "test_log":"Complete la oración de acuerdo con el sentido del texto:  Lo fundamental en la existencia humana es la ____ entre personas. Aislados, el ____ y la colectividad son ",
+        "frase":"Si no vas hasta el final ¿por qué empezar? (Joe Namath)",
+        "option_correcta": "relación – individuo -- abstraciones.",
+        "option_mal1":"relación – mundo – abstracciones.",
+        "option_mal2":"colectividad – individuo – fundamentales. ",
+        "option_mal3":"Identificación – individuo – fundamentales."
+    }
+]

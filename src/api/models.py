@@ -32,8 +32,8 @@ class User(db.Model):
     birthday = db.Column(db.String(120), unique=False, nullable=False)
     gender = db.Column(db.String(120), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    cant_question = db.Column(db.String(120),unique=False, nullable=False)
-    nota_alta = db.Column(db.String(120),unique=False, nullable=False)
+    cant_question = db.Column(db.Integer,unique=False, nullable=False)
+    nota_alta = db.Column(db.Integer,unique=False, nullable=False)
     
     def __repr__(self):
         return '<User %r>' % self.username

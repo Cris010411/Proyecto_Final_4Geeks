@@ -8,17 +8,25 @@ import { Link } from "react-router-dom";
 import "../../styles/viewresultuser.scss";
 
 export const Viewresultuser = () => {
+	const { store, actions } = useContext(Context);
+
+	const estadisticas = dato => {
+		let calificacion = dato * 20;
+		let intentos = store.currentUser.cant_question;
+		let historia = store.currentUser.nota_alta;
+		intentos += 1;
+		historia >= calificacion ? actions.updateUser(intentos, historia) : actions.updateUser(intentos, calificacion);
+	};
+
+	var notafinal = store.resultado * 20;
+	var nota = [{ name: "Preguntas falladas según item evaludao", value: "Nota" }];
+	var data = [{ id: 1, name: "Razonamiento logico", value: store.resultado }];
+
 	useEffect(() => {
 		actions.changeNav("");
 		actions.setBotPregunta("none");
+		estadisticas(store.resultado);
 	}, []);
-	const { store, actions } = useContext(Context);
-	var notafinal = 80;
-	var nota = [{ name: "Preguntas falladas según item evaludao", value: "Nota" }];
-
-	var data = [{ id: 1, name: "Razonamiento logico", value: "2" }];
-
-	var result = [{ name: "Total de respuesta falladas", value: "11" }];
 
 	return (
 		<div>
@@ -47,7 +55,7 @@ export const Viewresultuser = () => {
 								Tipo de test
 							</TableHeaderColumn>
 							<TableHeaderColumn className="text-center rounded-pill" dataField="value">
-								Preguntas malas
+								Preguntas Correctas
 							</TableHeaderColumn>
 						</BootstrapTable>
 					</div>

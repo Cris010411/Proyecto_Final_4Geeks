@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 import { Context } from "../store/appContext";
 
@@ -9,6 +11,15 @@ import foto from "../../img/perfil.jpg";
 
 export const Perfil = () => {
 	const { store, actions } = useContext(Context);
+	const [show, setShow] = useState(false);
+	const handleShow = () => setShow(true);
+	const handleClose = () => setShow(false);
+	const confirmado = () => {
+		actions.delUsuario();
+		actions.reset();
+		setTimeout(() => (window.location.href = "./"), 2000);
+	};
+
 	useEffect(() => {
 		actions.changeNav("interna");
 		actions.getName();
@@ -62,6 +73,26 @@ export const Perfil = () => {
 										</li>
 									</ul>
 								</div>
+							</div>
+							<div className="text-right">
+								<Button variant="secondary" onClick={handleShow} size="sm">
+									Eliminar mi Cuenta
+								</Button>
+
+								<Modal show={show} onHide={handleClose}>
+									<Modal.Header>
+										<Modal.Title>Confirmar eliminacion de cuenta</Modal.Title>
+									</Modal.Header>
+									<Modal.Body>Todos sus datos seran eliminados!</Modal.Body>
+									<Modal.Footer>
+										<Button variant="success" onClick={handleClose}>
+											Cancelar
+										</Button>
+										<Button variant="danger" onClick={() => confirmado()}>
+											Sí, Eliminar
+										</Button>
+									</Modal.Footer>
+								</Modal>
 							</div>
 						</div>
 					</div>

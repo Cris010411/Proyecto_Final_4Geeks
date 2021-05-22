@@ -6,12 +6,11 @@ import logo from "../../img/logo.png";
 import "../../styles/tipoTest.scss";
 
 export const TipoTest = () => {
+	const { store, actions } = useContext(Context);
+
 	useEffect(() => {
 		actions.changeNav("interna");
-		actions.setAleatorioPregunta();
-		alert(store.aleatorioPregunta);
 	}, []);
-	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="container-fluid text-center p-3 Principal">
@@ -24,7 +23,11 @@ export const TipoTest = () => {
 					<div className="col-6 text-left p-5">
 						<ul className="mt-3">
 							<Link to="test">
-								<li className="habilitado">Razonamiento lógico</li>
+								<li
+									className="habilitado"
+									onClick={() => actions.setAleatorioPregunta(store.cuestionario.length)}>
+									Razonamiento lógico
+								</li>
 							</Link>
 							<li className="Deshabilitado">Razonamiento abstracto</li>
 							<li className="Deshabilitado">Razonamiento Matemático</li>
