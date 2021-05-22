@@ -141,8 +141,6 @@ def forgot_pass():
     mail = Mail(from_email, to_email, subject, content)
     try:
         response = sg.client.mail.send.post(request_body=mail.get())
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
+        return jsonify({"msg": "Password enviado"}), 200
     except:
         return jsonify({"msg": "failed"}), 400

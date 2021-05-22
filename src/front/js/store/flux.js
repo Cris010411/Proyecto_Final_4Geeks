@@ -12,6 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			respuestaRegistro: "",
 			cuestionario: [],
 			opcionesAleatorias: [],
+			respuestaCorreo: "",
 			eleccion: "",
 			resultado: 0
 		},
@@ -139,6 +140,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(process.env.BACKEND_URL + "/api/forgot_pass", requestOptions)
 					.then(response => {
 						if (response.status >= 200 && response.status < 300) {
+							setStore({ respuestaCorreo: 1 });
 							return response.json();
 						} else {
 							alert("error" + response.status);
