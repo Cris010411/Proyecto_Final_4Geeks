@@ -104,7 +104,7 @@ def forgot_pass():
 
     # print(email_registrado.password)
     sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
-    from_email = Email("cris-nando01@hotmail.com")
+    from_email = Email("Fitmind@mail.com")
     to_email = To(email)
     subject = "Sending with SendGrid is Fun"
     content = Content("text/plain", "Su contraseña es:" + email_registrado.password)
