@@ -57,7 +57,7 @@ export const RegisterUser = () => {
 							<Label>Nombre de Usuario</Label>
 							<Input
 								className="form-control"
-								placeholder="Como quiere que se le conozca"
+								placeholder="Ingrese su nombre completo"
 								type="text"
 								name="nombre"
 								value={name}
